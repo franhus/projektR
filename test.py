@@ -11,5 +11,3 @@ import matplotlib.pyplot as plt
     # "-" nakon tip je za krivulju, inace pravac
 # fill between(x, y1, y2) -> za tocke u x (x koordinate) popunjuje prostor izmedu y1 i y2 tocaka
 # 
-
-
