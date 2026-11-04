@@ -1,11 +1,12 @@
 import numpy as np
 import os
+import json
 
-# Generiranje 300 točaka u krug (od 0 do 360 stupnjeva)
-kutovi = np.linspace(0, 2 * np.pi, 300)
+# Generiranje 500 točaka u krug (od 0 do 360 stupnjeva)
+kutovi = np.linspace(0, 2 * np.pi, 500)
 centar = 400
 
-# Izračun koordinata čistom matematikom
+# Izračun koordinata matematikom
 x_sredina = centar + 280 * np.cos(kutovi)
 y_sredina = centar + 280 * np.sin(kutovi)
 
@@ -16,17 +17,18 @@ x_unutarnji = centar + 248 * np.cos(kutovi)
 y_unutarnji = centar + 248 * np.sin(kutovi)
 
 # Spajanje u Pygame (X, Y) format parova
-sredina_tocke = list(zip(x_sredina, y_sredina))
+tocke_sredine = list(zip(x_sredina, y_sredina))
 vanjske_tocke = list(zip(x_vanjski, y_vanjski))
 unutarnje_tocke = list(zip(x_unutarnji, y_unutarnji))
 
 # Spremanje u binarnu datoteku
-os.makedirs("moje_staze", exist_ok=True)
-np.savez(
-    os.path.join("moje_staze", "podaci_staze.npz"), 
-    sredina=np.array(sredina_tocke), 
-    vanjske=np.array(vanjske_tocke), 
-    unutarnje=np.array(unutarnje_tocke)
-)
-
-print("Gotovo! Binarna datoteka podaci_staze.npz je uspješno stvorena.")
+podaci = {
+    "linija": tocke_sredine,
+    "vanjske": vanjske_tocke,
+    "unutarnje": unutarnje_tocke
+}
+# spremanje u .txt
+os.makedirs("staze", exist_ok=True)
+putanja = os.path.join("staze", "kruzna_staza.txt")
+with open(putanja, "w") as f:
+    json.dump(podaci, f, indent=4)

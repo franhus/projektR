@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from scipy.interpolate import splprep, splev
 from shapely import LineString
 import os
+import json
 
 # prostor za crtanje
 plt.figure(figsize=(6, 6))
@@ -70,9 +71,13 @@ def skaliraj(tocke):
 vanjske_tocke = skaliraj(list(staza.exterior.coords))
 unutarnje_tocke = skaliraj(list(staza.interiors[0].coords))
 tocke_sredine = skaliraj(list(zip(x_linija, y_linija)))     # spaja x i y koordinate
-np.savez(
-    os.path.join("staze", "nacrtana_staza.npz"), 
-    linija=np.array(tocke_sredine), 
-    vanjske=np.array(vanjske_tocke), 
-    unutarnje=np.array(unutarnje_tocke)
-)
+podaci = {
+    "linija": tocke_sredine,
+    "vanjske": vanjske_tocke,
+    "unutarnje": unutarnje_tocke
+}
+# spremanje u .txt
+os.makedirs("staze", exist_ok=True)
+putanja = os.path.join("staze", "nacrtana_staza.txt")
+with open(putanja, "w") as f:
+    json.dump(podaci, f, indent=4)

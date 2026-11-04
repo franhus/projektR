@@ -4,15 +4,17 @@ from scipy.interpolate import splprep, splev
 from shapely import LineString
 import pygame
 import os
+import json
 
 # dohvat podataka
-fajl = "nacrtana_staza.npz"
-podaci = np.load(os.path.join("staze", fajl))
-tocke_linije = podaci["linija"].tolist()
-vanjske_tocke = podaci["vanjske"].tolist()
-unutarnje_tocke = podaci["unutarnje"].tolist()
+fajl = "nacrtana_staza.txt"
+putanja = os.path.join("staze", fajl)
+with open(putanja, "r") as f:
+    podaci = json.load(f)
 
-# 
+tocke_linije = podaci["linija"]
+vanjske_tocke = podaci["vanjske"]
+unutarnje_tocke = podaci["unutarnje"]
 
 #PyGame iscrtavanje
 pygame.init()
