@@ -1,11 +1,12 @@
 import pygame
 from vizualno.iscrtavanje_staze import nacrtaj_stazu
+from vizualno.iscrtavanje_auta import nacrtaj_auto
 
 DIMENZIJA = 800
 BIJELA = (255, 255, 255)
 FPS = 60
 
-def pokreni_prikaz(staza):
+def pokreni_prikaz(staza, auto):
     pygame.init()
     ekran = pygame.display.set_mode((DIMENZIJA, DIMENZIJA))
     pygame.display.set_caption("Simulacija")
@@ -18,13 +19,14 @@ def pokreni_prikaz(staza):
             if event.type == pygame.QUIT:
                 radi = False
 
+        auto.pomakni()
         ekran.fill(BIJELA)
         
-        # Iscrtavanje elemenata
+        # iscrtavanje elemenata
         nacrtaj_stazu(ekran, staza)
-        # nacrtaj_autic(ekran, autic)  <-- ovdje dodajemo autić u sljedećem koraku
+        nacrtaj_auto(ekran, auto)
         
-        # Osvježavanje prikaza
+        # refresh
         pygame.display.flip()
         clock.tick(FPS)
 

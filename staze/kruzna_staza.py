@@ -2,8 +2,10 @@ import numpy as np
 import os
 import json
 
+BROJ_TOCAKA = 500
+
 # Generiranje 500 točaka u krug (od 0 do 360 stupnjeva)
-kutovi = np.linspace(0, 2 * np.pi, 500)
+kutovi = np.linspace(0, 2 * np.pi, BROJ_TOCAKA)
 centar = 400
 
 # Izračun koordinata matematikom

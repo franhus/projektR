@@ -5,6 +5,8 @@ from shapely import LineString
 import os
 import json
 
+BROJ_TOCAKA = 500
+
 # prostor za crtanje
 plt.figure(figsize=(6, 6))
 plt.title("Nacrtaj stazu")
@@ -32,12 +34,12 @@ y = ulaz[:, 1]
 # gladenje
 tck, u = splprep([x, y], s=0, per=True)
 
-puno_tocaka = np.linspace(0, 1, 500)        # broj tocaka za izgladivanje
-x_linija, y_linija = splev(puno_tocaka, tck)    # x i y koordinate sredisnje linije staze
+puno_tocaka = np.linspace(0, 1, BROJ_TOCAKA) # broj tocaka za izgladivanje
+x_linija, y_linija = splev(puno_tocaka, tck) # x i y koordinate sredisnje linije staze
 
 # pretvorba u matricu (300, 2)
 linija = np.column_stack((x_linija, y_linija))
-linija = LineString(linija)                 # sredisnja linija staze
+linija = LineString(linija) # sredisnja linija staze
 
 # stvaranje rubova od sredisnje linije
 staza = linija.buffer(3.0, quad_segs=16, resolution=16, join_style=1)

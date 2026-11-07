@@ -39,4 +39,6 @@ matplotlib:
 
 shapely:
 
-cma:
+pygame:
+    pygame.Rect(x_gornjeg_lijevog_kuta, y_gornjeg_lijevog_kuta, visina, sirina)
+    
