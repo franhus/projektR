@@ -19,7 +19,9 @@ def pokreni_prikaz(staza, auto):
             if event.type == pygame.QUIT:
                 radi = False
 
-        auto.pomakni()
+        if not auto.sudar and auto.indeks < len(staza.linija):
+            auto.pomakni()
+            
         ekran.fill(BIJELA)
         
         # iscrtavanje elemenata

@@ -8,7 +8,7 @@ import json
 BROJ_TOCAKA = 500
 
 # prostor za crtanje
-plt.figure(figsize=(6, 6))
+plt.figure(figsize=(8, 8))
 plt.title("Nacrtaj stazu")
 plt.xlim(0, 100)
 plt.ylim(0, 100)
@@ -47,7 +47,7 @@ x_vanjski, y_vanjski = staza.exterior.xy    # x i y koordinate vanjske granice s
 x_unutarnji, y_unutarnji = staza.interiors[0].xy    # # x i y koordinate unutarnje granice staze
 
 # crtanje staze
-plt.figure(figsize=(6, 6))
+plt.figure(figsize=(8, 8))
 # spline
 plt.plot(x_linija, y_linija, "r--", linewidth=2, label='sredina')
 # staza
