@@ -6,6 +6,7 @@ import os
 import json
 
 BROJ_TOCAKA = 500
+SIRINA_STAZE = 3.0
 
 # prostor za crtanje
 plt.figure(figsize=(8, 8))
@@ -42,7 +43,7 @@ linija = np.column_stack((x_linija, y_linija))
 linija = LineString(linija) # sredisnja linija staze
 
 # stvaranje rubova od sredisnje linije
-staza = linija.buffer(3.0, quad_segs=16, resolution=16, join_style=1)
+staza = linija.buffer(SIRINA_STAZE, quad_segs=16, resolution=16, join_style=1)
 x_vanjski, y_vanjski = staza.exterior.xy    # x i y koordinate vanjske granice staze
 x_unutarnji, y_unutarnji = staza.interiors[0].xy    # # x i y koordinate unutarnje granice staze
 

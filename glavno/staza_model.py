@@ -9,4 +9,4 @@ class Staza:
         self.linija = podaci.get("linija")
         self.vanjske = podaci.get("vanjske")
         self.unutarnje = podaci.get("unutarnje")
-
+        self.segmenti = podaci.get("segmenti")

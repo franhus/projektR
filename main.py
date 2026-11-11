@@ -13,7 +13,12 @@ auto = Auto(staza.linija, staza.vanjske, staza.unutarnje)
 
 if VIZUALNO:
     from vizualno.gui import pokreni_prikaz
-    pokreni_prikaz(staza, auto)
+    
+    vrijeme = pokreni_prikaz(staza, auto)
+    if not auto.sudar:
+        print("Auto je prosao stazu u ", vrijeme, " sekundi")
+    else:
+        print("Auto je izasao izvan granica staze na ", auto.pozicija())
 else:
     print("Pokrecem simulaciju bez vizualnog dijela")
     t0 = time.time()
